@@ -13,7 +13,7 @@ import { challengeProgress, challenges, userProgress } from "@/db/schema";
 export const upsertUserProgress = async (courseId: number) => {
   // get a user's id from auth in clerk
   const { userId } = await auth();
-  //get the entire user object from clerk jk
+  //get the entire user object from clerk
   const user = await currentUser();
 
   // if there is no user, this action is unauthorized

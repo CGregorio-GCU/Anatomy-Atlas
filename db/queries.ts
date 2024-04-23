@@ -2,31 +2,26 @@ import { cache } from "react";
 import { eq } from "drizzle-orm";
 import { auth } from "@clerk/nextjs";
 
-import {db} from "@/db/drizzle";
+import db from "@/db/drizzle";
 import { 
   challengeProgress,
   courses, 
   lessons, 
   units, 
-  userProgress
+  userProgress,
+  userSubscription
 } from "@/db/schema";
 
-//cacehd function
 export const getUserProgress = cache(async () => {
   const { userId } = await auth();
-  
-  console.log("Hello! My user id is:" + userId);
-  // no user progress for this user
-  if (!userId ) {
+
+  if (!userId) {
     return null;
   }
 
-  // otherwise, find the first data where...
   const data = await db.query.userProgress.findFirst({
-    // match user progress by id
     where: eq(userProgress.userId, userId),
     with: {
-      // this now implies that active course is true
       activeCourse: true,
     },
   });
@@ -34,20 +29,16 @@ export const getUserProgress = cache(async () => {
   return data;
 });
 
-// cached function
 export const getUnits = cache(async () => {
   const { userId } = await auth();
-  // await get user progress
   const userProgress = await getUserProgress();
 
   if (!userId || !userProgress?.activeCourseId) {
     return [];
   }
 
-  //get data 
   const data = await db.query.units.findMany({
     orderBy: (units, { asc }) => [asc(units.order)],
-    //where the course id matches the user progress active course id
     where: eq(units.courseId, userProgress.activeCourseId),
     with: {
       lessons: {
@@ -69,9 +60,7 @@ export const getUnits = cache(async () => {
     },
   });
 
-
   const normalizedData = data.map((unit) => {
-  // individual units
     const lessonsWithCompletedStatus = unit.lessons.map((lesson) => {
       if (
         lesson.challenges.length === 0
@@ -95,18 +84,13 @@ export const getUnits = cache(async () => {
 });
 
 export const getCourses = cache(async () => {
-  // use cache to get courses without passing props to the child every time
   const data = await db.query.courses.findMany();
 
-  // return our courses
   return data;
 });
 
-// return one course by it's id
 export const getCourseById = cache(async (courseId: number) => {
-  // return the first course
   const data = await db.query.courses.findFirst({
-    // return the course matching this id
     where: eq(courses.id, courseId),
     with: {
       units: {
@@ -232,6 +216,28 @@ export const getLessonPercentage = cache(async () => {
   );
 
   return percentage;
+});
+
+const DAY_IN_MS = 86_400_000;
+export const getUserSubscription = cache(async () => {
+  const { userId } = await auth();
+
+  if (!userId) return null;
+
+  const data = await db.query.userSubscription.findFirst({
+    where: eq(userSubscription.userId, userId),
+  });
+
+  if (!data) return null;
+
+  const isActive = 
+    data.stripePriceId &&
+    data.stripeCurrentPeriodEnd?.getTime()! + DAY_IN_MS > Date.now();
+
+  return {
+    ...data,
+    isActive: !!isActive,
+  };
 });
 
 export const getTopTenUsers = cache(async () => {
