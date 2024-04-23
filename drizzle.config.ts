@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export default {
-    schema: "./src/db/schema.ts",
-    out: "./src/db/migrations",
+    schema: "./db/schema.ts",
+    out: "./db/migrations",
     dbCredentials: {
         uri: process.env.DB_URL!,
     },
