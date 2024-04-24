@@ -36,13 +36,14 @@ const LearnPage = async () => {
         <div className="flex flex-row-reverse gap-[48px] px-6">
       <StickyWrapper>
         <UserProgress
-          activeCourse={{id:1, title: "Skeletal System", imageSrc: "/bone.svg"}}
-          hearts={5}
-          points={100}
+        // because the user is redirected above if they have no active course, this needs no validation
+          activeCourse={userProgress.activeCourse}
+          hearts={userProgress.hearts}
+          points={userProgress.points}
         />
       </StickyWrapper>
       <FeedWrapper>
-        <Header title="Skeletal System" />
+        <Header title={userProgress.activeCourse.title} />
         {units.map((unit) => (
           <div key={unit.id} className="mb-10">
             {JSON.stringify(unit)}

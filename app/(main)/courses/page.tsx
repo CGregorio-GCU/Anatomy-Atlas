@@ -4,15 +4,15 @@ import { List } from "./list";
 
 const CoursesPage = async () => {
   const coursesData = getCourses();
-  // const userProgressData = getUserProgress();
+  const userProgressData = getUserProgress();
 
   // uses await with an async method instead of using await with each query
   const [
     courses,
-    // userProgress,
+    userProgress,
   ] = await Promise.all([
     coursesData,
-    // userProgressData,
+    userProgressData,
   ]);
 
   return (
@@ -22,7 +22,9 @@ const CoursesPage = async () => {
       </h1>
       <List
         courses={courses}
-        activeCourseId={1}
+        // instead select the course the user has selected
+        // if null, none of the courses will be checked
+        activeCourseId={userProgress?.activeCourseId}
       />
     </div>
   );

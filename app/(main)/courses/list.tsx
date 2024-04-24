@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "sonner";
 import { useTransition } from "react";
 import { useRouter } from "next/navigation";
 
@@ -29,7 +30,9 @@ export const List = ({ courses, activeCourseId }: Props) => {
 
     // if a user joins a new course
     startTransition(() => {
-      upsertUserProgress(id);
+      upsertUserProgress(id)
+      // error catch
+        .catch(() => toast.error("Hey, something went wrong!")) ;
     });
   };
 
