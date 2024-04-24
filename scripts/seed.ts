@@ -1,20 +1,12 @@
-import { drizzle } from "drizzle-orm/mysql2";
-import mysql from "mysql2";
-import dotenv from "dotenv";
-import type { Mode } from "drizzle-orm/mysql-core";
-
+import "dotenv/config";
+import { drizzle } from "drizzle-orm/neon-http";
+import { neon } from "@neondatabase/serverless";
 
 import * as schema from "../db/schema";
 
-dotenv.config();
-if (!process.env.DB_URL) {
-    throw new Error("DB Credentials error");
-}
-
-const sql = mysql.createConnection(process.env.DB_URL);
-// const sql = neon(process.env.DATABASE_URL!); 
-
-const db = drizzle(sql, { schema: schema, mode: "query" as Mode });
+const sql = neon(process.env.DB_URL!); 
+// @ts-ignore
+const db = drizzle(sql, { schema });
 
 const main = async () => {
   try {
