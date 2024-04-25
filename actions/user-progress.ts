@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { auth, currentUser } from "@clerk/nextjs";
 
-import {db} from "@/db/drizzle";
+import db from "@/db/drizzle";
 import { POINTS_TO_REFILL } from "@/constants";
 import { getCourseById, getUserProgress} from "@/db/queries";
 import { challengeProgress, challenges, userProgress } from "@/db/schema";
@@ -13,7 +13,7 @@ import { challengeProgress, challenges, userProgress } from "@/db/schema";
 export const upsertUserProgress = async (courseId: number) => {
   // get a user's id from auth in clerk
   const { userId } = await auth();
-  //get the entire user object from clerk
+  //get the entire user object from clerk jk
   const user = await currentUser();
 
   // if there is no user, this action is unauthorized
