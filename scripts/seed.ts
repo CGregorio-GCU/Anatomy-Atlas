@@ -43,7 +43,7 @@ const main = async () => {
     await db.insert(schema.units).values([
       {
         id: 1,
-        courseId: 1, // Spanish
+        courseId: 1, // Skeletal
         title: "Unit 1",
         description: "Learn the basics of the Skeletal System!",
         order: 1,
@@ -98,7 +98,7 @@ const main = async () => {
         lessonId: 1, // title: "Introduction to the Skeletal System",
         type: "ASSIST",
         order: 2,
-        question: 'Functions of the Skeletal System',
+        question: 'Not a Skeletal System function',
       },
       {
         id: 3,
