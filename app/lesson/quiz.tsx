@@ -5,10 +5,11 @@ import Image from "next/image";
 import Confetti from "react-confetti"
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { useAudio, useWindowSize } from "react-use";
-
+import { useAudio, useWindowSize, useMount } from "react-use";
 
 import { reduceHearts } from "@/actions/user-progress";
+import { useHeartsModal } from "@/store/use-hearts-modal";
+import { usePracticeModal } from "@/store/use-practice-modal";
 import { challengeOptions, challenges } from "@/db/schema";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 
@@ -34,6 +35,15 @@ export const Quiz = ({
     initialLessonId,
     initialLessonChallenges,
 }: Props) => {
+    const { open: openHeartsModal } = useHeartsModal();
+    const { open: openPracticeModal } = usePracticeModal();
+
+    useMount (() => {
+        // lesson complete
+        if (initialPercentage === 100) {
+            openPracticeModal();
+        }
+    })
 
     const { width, height } = useWindowSize();
 
@@ -118,7 +128,8 @@ export const Quiz = ({
                 .then((response) => {
                     // check for the error in the challenge-progress file
                     if (response?.error === "hearts") {
-                        console.error("Missing hearts!");
+                        // console.error("Missing hearts!");
+                        openHeartsModal();
                         return
                     }
 
@@ -143,10 +154,10 @@ export const Quiz = ({
                     .then((response) => {
                         // resolve hearts error
                         if (response?.error === "hearts"){
-                            console.error("Missing hearts")
+                            // console.error("Missing hearts")
+                            openHeartsModal();
                             return;
                         }
-
 
                         incorrectControls.play();
                         setStatus("wrong");
