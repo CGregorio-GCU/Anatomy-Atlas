@@ -44,6 +44,8 @@ export const Footer = ({
           <Button
             variant="default"
             size={isMobile ? "sm" : "lg"}
+            // router can work instead of window.location.href
+            // however, this causes a full refresh, which is better for this situation
             onClick={() => window.location.href = `/lesson/${lessonId}`}
           >
             Practice again
