@@ -13,6 +13,7 @@ import { lessons, units as unitsSchema } from "@/db/schema";
 
 import { Unit } from "./unit";
 import { Header } from "./header";
+import { Quests } from "@/components/quests"
 
 const LearnPage = async () => {
   // pull the user progress data
@@ -52,6 +53,7 @@ const LearnPage = async () => {
           hearts={userProgress.hearts}
           points={userProgress.points}
         />
+        <Quests points={userProgress.points}/>
       </StickyWrapper>
       <FeedWrapper>
         <Header title={userProgress.activeCourse.title} />
