@@ -50,7 +50,7 @@ Anatomy Atlas features both high-level and non-functional requirements that are 
 ### High-Level Requirements
 - Allow users to register and login
 - Allow users to reset their passwords
-- Prompt users to select course
+- Prompt users to select a course
 - Allow users to begin a lesson
 - Allow users to retake passed lessons
 - Store user completion data across sessions
@@ -60,7 +60,7 @@ Anatomy Atlas features both high-level and non-functional requirements that are 
 - Public documentation for Anatomy Atlas including a comprehensive README
 - Public documentation for the Admin API
 - Documentation for all API endpoints
-- Ensure that users sessions are stored in a secure manner
+- Ensure that users' sessions are stored in a secure manner
 
 ## Technologies
 
@@ -79,7 +79,7 @@ Chosen – Chosen because the framework reduces the amount of boilerplate code w
 
 ### React Admin V. 4.16.16
 
-Purpose - A front-end framework to build  a data driven administrative dashboard on top of a REST service.
+Purpose - A front-end framework to build a data-driven administrative dashboard on top of a REST service.
 
 Chosen - Chosen to allow admin users to create new courses, lessons, units, challenges, and options inside the application, without the need for touching the database itself.
 
@@ -91,7 +91,7 @@ Chosen - Chosen to allow working with API calls with custom headers and HTTP Con
 
 ### Clerk API 2021-02-25
 
-Purpose - Store user information though a user registration and login process
+Purpose - Store user information through a user registration and login process
 
 Chosen - Chosen to store user information using JSON Web Tokens, which allow for user session data to be shared until the user logs out (or until a predetermined time has passed)
 
@@ -120,11 +120,11 @@ Purpose – TypeScript will be utilized to create the API
 Chosen – Chosen because it excels at longevity and eliminates technical debt in environments where numerous developers contribute to the codebase, like in open-source software projects.  
 
 ### Drizzle-ORM 0.30.9 
-Purpose – Create data access objects found in the data layer. Retrieve data from the Neon PostgresSQL database. 
+Purpose – Create data access objects found in the data layer. Retrieve data from the Neon PostgreSQL database. 
 
-Chosen – Chosen because it provides data models that allow for interaction between schema as options for creation of queries.
+Chosen – Chosen because it provides data models that allow for interaction between schema as options for the creation of queries.
  
-### PostgresSQL 16 
+### PostgreSQL 16 
 
 Purpose – Store data to track students.
 
@@ -143,10 +143,10 @@ Chosen - Chosen to allow for the quick creation of Modals
 ### GitHub 
 Purpose – Allows developers on the team to make changes to the code at the same time. Allows code to be stored in the cloud to prevent data from being lost.  
 
-Chosen – GitHub is an industry standard for Git and Version Control.
+Chosen – GitHub is an industry-standard for Git and Version Control.
 
 ## New Technologies
-This application involved the learning of new techologies, which include, but are not limited to:
+This application involved the learning of new technologies, which include, but are not limited to:
 	
  - PostgresSql
  - Drizzle ORM
@@ -160,15 +160,20 @@ This application involved the learning of new techologies, which include, but ar
 ## Technical Approach
 
 ### Logical Solution Design
-The logical solution design depicts the high-level software architecture and interactions in the React application, which relies on React and Next.js code in for the front end, and the ClerkAPI as well as the DrizzleORM running on Express.js to manage the back end data associated with the Neon PostgreSQL database. 
+The logical solution design depicts the high-level software architecture and interactions in the React application, which relies on React and Next.js code in for the front end, and the ClerkAPI as well as the DrizzleORM running on Express.js to manage the back-end data associated with the Neon PostgreSQL database. 
+
+![image](https://github.com/CGregorio-GCU/Anatomy-AtlasV3/blob/main/Diagrams/CST-451%20Logical%20System%20Architechture.drawio.png)
+
 
 ### Physical Solution Design
-The following diagram denotes the architechture of the application in regards to the separation of the front and back-end.
+The following diagram denotes the architecture of the application in regard to the separation of the front and back-end.
+
+![image](https://github.com/CGregorio-GCU/Anatomy-AtlasV3/blob/main/Diagrams/Logical%20Solution%20Design.drawio.png)
 
 
 ## Detailed Technical Design Decision
 #### General Technical Approach
-This application was completed in an approach similar to the Waterfall methodology, where development was approached by fulfilling a feature's functionality in one Git commit, and building upon the promised features in each iteration of the application's history. This approach of building a feature, testing it, releasing it, and starting on another feature ensured that parts of the application touched in the beginning would not lose functionality later.
+This application was completed in an approach similar to the Waterfall methodology, where development was approached by fulfilling a feature's functionality in one Git commit and building upon the promised features in each iteration of the application's history. This approach of building a feature, testing it, releasing it, and starting on another feature ensured that parts of the application touched in the beginning would not lose functionality later.
 
 #### Design & Approach
 In completing this application, one of the most important design approaches to follow was to make a website that felt familiar for users to use, and in doing so, making a layout that users would think is easier to navigate. This website aims to emulate the UI seen in the Duolingo app, and as such, careful deliberation went into making buttons that felt cartoonish, but very impactful when placed on the screen.
