@@ -162,13 +162,13 @@ This application involved the learning of new technologies, which include, but a
 ### Logical Solution Design
 The logical solution design depicts the high-level software architecture and interactions in the React application, which relies on React and Next.js code in for the front end, and the ClerkAPI as well as the DrizzleORM running on Express.js to manage the back-end data associated with the Neon PostgreSQL database. 
 
-![image](https://github.com/CGregorio-GCU/Anatomy-AtlasV3/blob/main/Diagrams/CST-451%20Logical%20System%20Architechture.drawio.png)
-
+![image](https://github.com/CGregorio-GCU/Anatomy-AtlasV3/blob/main/Diagrams/Logical%20Solution%20Design.drawio.png)
 
 ### Physical Solution Design
 The following diagram denotes the architecture of the application in regard to the separation of the front and back-end.
 
-![image](https://github.com/CGregorio-GCU/Anatomy-AtlasV3/blob/main/Diagrams/Logical%20Solution%20Design.drawio.png)
+![image](https://github.com/CGregorio-GCU/Anatomy-AtlasV3/blob/main/Diagrams/CST-451%20Logical%20System%20Architechture.drawio.png)
+
 
 
 ## Detailed Technical Design Decision
